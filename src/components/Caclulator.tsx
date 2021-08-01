@@ -14,6 +14,7 @@ const Caclulator = () => {
 
   return (
     <div>
+      <h1>Calculator</h1>
       {number}
       <button onClick={ () => addNumber() }>Add</button>
       <button onClick={ () => subtractNumber() }>Subtract</button>
