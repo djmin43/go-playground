@@ -3,7 +3,7 @@ import LandingPage from '../common/components/landing/LandingPage'
 
 export default function Home() {
   return (
-    <div>
+    <div className="App">
         <Head>
           <title>Makgoli</title>
           <link rel="icon" href="/favicon.ico" />
