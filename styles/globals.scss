@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 $orange: #f57c00;
+$fontColor: #fff;
 
 body {
   font-family: 'Roboto Mono', monospace;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
 }
 
 .navbar {
@@ -11,8 +17,8 @@ body {
   justify-content: flex-start;
   width: 100vw;
   height: 5vh;
-  color: #fff;
-  background-color: #f57c00;
+  color: $fontColor;
+  background-color: $orange;
 }
 
 .header {
@@ -20,4 +26,16 @@ body {
   justify-content: center;
   align-items: center;
   width: 100vw;
+}
+
+.landing-page {
+  height: 80vh;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  color: $fontColor;
+  background-color: $orange;
+  height: 40vh;
 }

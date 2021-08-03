@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 
-const LandingPage = () => {
+const LandingPage = (): ReactElement => {
   return (
-    <div>
+    <div className="landing-page">
       Hello World!
     </div>
   )
