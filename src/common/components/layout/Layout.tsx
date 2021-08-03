@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import Navbar from './Navbar'
 
 interface ParentCompProps {
-  children: React.ReactNode;
+  children: ReactElement;
 }
 
-const Layout = ({children}: ParentCompProps) => {
+const Layout = ({children}: ParentCompProps): ReactElement => {
   return (
     <div>
       <Header />

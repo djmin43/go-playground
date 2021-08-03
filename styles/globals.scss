@@ -8,9 +8,16 @@ body {
 
 .navbar {
   display: inline-flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   width: 100vw;
   height: 5vh;
   color: #fff;
   background-color: #f57c00;
+}
+
+.header {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
 }

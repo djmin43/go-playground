@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 
-const Navbar = () => {
+const Navbar = (): ReactElement => {
   return (
     <div className="navbar">
       <div>modal</div>
