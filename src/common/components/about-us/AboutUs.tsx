@@ -6,7 +6,6 @@ import { RootState } from '../../../redux/store'
 const AboutUs = (): ReactElement => {
   const reduxValue = useSelector((state: RootState) => state.value)
 
-  console.log(reduxValue)
   return (
     <div>
       asdf
