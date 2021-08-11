@@ -1,9 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-
 import postReducer from '../reducers/postSlice'
 
-export default configureStore({
+const store = configureStore({
   reducer: {
     value: postReducer
   }
 })
+
+export type RootState = ReturnType<typeof store.getState>
+
+export default store

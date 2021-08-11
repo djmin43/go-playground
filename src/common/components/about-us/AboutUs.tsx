@@ -1,9 +1,21 @@
 import React, { ReactElement } from 'react'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../redux/store'
+
 
 const AboutUs = (): ReactElement => {
+  const reduxValue = useSelector((state: RootState) => state.value)
+
+  console.log(reduxValue)
   return (
     <div>
-      this is about us
+      asdf
+      {reduxValue.map(({id, title, genre}) => 
+        <div key={id}>
+          <p>{title}</p>
+          <p>{genre}</p>
+        </div>
+      )}
     </div>
   )
 }
