@@ -8,7 +8,13 @@ const initialState = [
 const postSlice = createSlice({
   name: 'value',
   initialState,
-  reducers: {}
+  reducers: {
+    postNewMovie(state, action) {
+      state.push(action.payload)
+    }
+  }
 })
+
+export const { postNewMovie } = postSlice.actions
 
 export default postSlice.reducer
