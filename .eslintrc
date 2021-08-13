@@ -1,3 +1,16 @@
 {
-  "extends": ["next", "next/core-web-vitals"]
+  "plugins": ["@typescript-eslint"], // Add
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "rules": {
+    // You can remove the prefer-const rule, as it is already added by @typescript-eslint/recommended
+
+    // I suggest you add at least those two rules:
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "error"
+  }
 }

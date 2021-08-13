@@ -15,13 +15,8 @@ const TodaysDeal = (): ReactElement => {
   const [randomImages, setRandomImages] = useState<RandomImage[]>([])
 
   const fetchRandomImages = async () => {
-    try {
-      const randomImageArray: RandomImage[] = await axios.get('https://picsum.photos/v2/list').then(response => response.data)
-      console.log(randomImageArray)
-      setRandomImages(randomImageArray)
-    } catch {
-      console.log(Error)
-    }
+    const randomImageArray: RandomImage[] = await axios.get('https://picsum.photos/v2/list').then(response => response.data)
+    setRandomImages(randomImageArray)
   }
 
   useEffect(() => {
@@ -31,9 +26,9 @@ const TodaysDeal = (): ReactElement => {
 
   return (
     <div>
-      {randomImages.map(({url, download_url, id, author, height, width}) => 
+      {randomImages.map(({download_url, id, author}) => 
       <div key={id}>
-        <Image src={download_url} alt={author} height={height/10} width={width/10}/>
+        <Image src={download_url} alt={author} height={300} width={300}/>
       </div>
       )}
     </div>

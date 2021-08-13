@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import TodaysDeal from '../../common/components/todays-deal'
 
-const Deal = () => {
+const Deal = (): ReactElement => {
   return (
     <div>
       <TodaysDeal />
