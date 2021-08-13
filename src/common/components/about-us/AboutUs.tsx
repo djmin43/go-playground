@@ -14,6 +14,6 @@ const styles = StyleSheet.create({
   aboutUs: {
     height: '80vh'
   }
-})
+})  
 
 export default AboutUs
