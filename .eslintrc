@@ -9,7 +9,7 @@
     // "airbnb/hooks"
   ],
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": ["./tsconfig.json"]
   },
   "rules": {
     // You can remove the prefer-const rule, as it is already added by @typescript-eslint/recommended
