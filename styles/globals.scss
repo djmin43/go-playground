@@ -18,10 +18,13 @@ a {
 .navbar {
   display: inline-flex;
   justify-content: flex-start;
+  position: sticky;
+  top: 0;
   width: 100vw;
   height: 5vh;
   color: $fontColor;
   background-color: $orange;
+  z-index: 7;
 }
 
 .header {
