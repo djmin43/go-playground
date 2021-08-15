@@ -1,6 +1,6 @@
-import React, { ReactElement, useEffect, useState } from 'react'
-import Image from 'next/image'
-import axios from 'axios'
+import React, { ReactElement, useEffect, useState } from 'react';
+import Image from 'next/image';
+import axios from 'axios';
 
 type RandomImage = {
   id: string;
@@ -12,27 +12,26 @@ type RandomImage = {
 }
 
 const TodaysDeal = (): ReactElement => {
-  const [randomImages, setRandomImages] = useState<RandomImage[]>([])
+  const [randomImages, setRandomImages] = useState<RandomImage[]>([]);
 
   const fetchRandomImages = async () => {
-    const randomImageArray: RandomImage[] = await axios.get('https://picsum.photos/v2/list').then(response => response.data)
-    setRandomImages(randomImageArray)
-  }
+    const randomImageArray: RandomImage[] = await axios.get('https://picsum.photos/v2/list').then((response) => response.data);
+    setRandomImages(randomImageArray);
+  };
 
   useEffect(() => {
-    fetchRandomImages()
-  }, [])
-
+    fetchRandomImages();
+  }, []);
 
   return (
     <div>
-      {randomImages.map(({download_url, id, author}) => 
-      <div key={id}>
-        <Image src={download_url} alt={author} height={300} width={300}/>
-      </div>
-      )}
+      {randomImages.map(({ download_url, id, author }) => (
+        <div key={id}>
+          <Image src={download_url} alt={author} height={300} width={300} />
+        </div>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default TodaysDeal
+export default TodaysDeal;
