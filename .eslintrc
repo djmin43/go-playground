@@ -8,6 +8,9 @@
     "airbnb-typescript"
     // "airbnb/hooks"
   ],
+  "env": {
+    "jest": true
+  },
   "parserOptions": {
     "project": ["./tsconfig.json"]
   },
