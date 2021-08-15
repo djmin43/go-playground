@@ -5,9 +5,12 @@
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended", // Add
     "prettier",
-    "airbnb"
+    "airbnb-typescript"
     // "airbnb/hooks"
   ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
   "rules": {
     // You can remove the prefer-const rule, as it is already added by @typescript-eslint/recommended
 
@@ -20,4 +23,5 @@
     "@typescript-eslint/camelcase": "off",
     "camelcase": "off"
   }
+  
 }

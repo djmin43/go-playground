@@ -9,13 +9,15 @@ type RandomImage = {
   url: string;
   height: number;
   width: number;
-}
+};
 
 const TodaysDeal = (): ReactElement => {
   const [randomImages, setRandomImages] = useState<RandomImage[]>([]);
 
   const fetchRandomImages = async () => {
-    const randomImageArray: RandomImage[] = await axios.get('https://picsum.photos/v2/list').then((response) => response.data);
+    const randomImageArray: RandomImage[] = await axios
+      .get('https://picsum.photos/v2/list')
+      .then((response) => response.data);
     setRandomImages(randomImageArray);
   };
 
