@@ -2,6 +2,10 @@ import React from 'react';
 import TodaysDeal from './TodaysDeal';
 
 export default {
-  title: 'TodaysDeal',
   component: TodaysDeal,
+  title: 'TodaysDeal',
 };
+
+const Template = () => <TodaysDeal />;
+
+export const Pirarmy = Template.bind({});
