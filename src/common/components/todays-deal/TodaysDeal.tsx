@@ -29,7 +29,7 @@ const TodaysDeal = (): ReactElement => {
     <div>
       {randomImages.map(({ download_url, id, author }) => (
         <div key={id}>
-          <Image src={download_url} alt={author} height={300} width={300} />
+          <Image src={download_url} alt={author} height={300} width={300} data-testid="deal-image" />
         </div>
       ))}
     </div>
