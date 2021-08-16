@@ -1,6 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import Image from 'next/image';
 import axios from 'axios';
+import 'regenerator-runtime/runtime';
 
 type RandomImage = {
   id: string;
