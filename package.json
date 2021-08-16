@@ -11,6 +11,9 @@
     "build-storybook": "build-storybook -s public",
     "test": "jest"
   },
+  "jest": {
+    "testEnvironment": "jsdom"
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.1",
     "axios": "^0.21.1",
