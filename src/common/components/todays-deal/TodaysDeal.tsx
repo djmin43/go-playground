@@ -33,6 +33,9 @@ const TodaysDeal = (): ReactElement => {
           <Image src={download_url} alt={author} height={300} width={300} />
         </div>
       ))}
+      <div data-testid="hello">
+        hello
+      </div>
     </div>
   );
 };
