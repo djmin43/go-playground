@@ -3,7 +3,7 @@ import Image from 'next/image';
 import axios from 'axios';
 import 'regenerator-runtime/runtime';
 
-type RandomImage = {
+export type RandomImage = {
   id: string;
   author: string;
   download_url: string;
