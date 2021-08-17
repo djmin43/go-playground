@@ -9,7 +9,7 @@
     "lint": "next lint",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "test": "jest"
+    "test": "jest --watchAll"
   },
   "jest": {
     "testEnvironment": "jsdom"
