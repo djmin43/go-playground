@@ -16,10 +16,9 @@ const TodaysDeal = (): ReactElement => {
   const [randomImages, setRandomImages] = useState<RandomImage[]>([]);
 
   const fetchRandomImages = async () => {
-    const randomImageArray: RandomImage[] = await axios
+    const randomImageArray = await axios
       .get('https://picsum.photos/v2/list')
-      .then((response) => response.data);
-    setRandomImages(randomImageArray);
+      .then((response) => setRandomImages(response.data));
   };
 
   useEffect(() => {

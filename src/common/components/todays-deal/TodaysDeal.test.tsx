@@ -31,5 +31,4 @@ afterEach(() => cleanup())
 
 test('testing a test run', async () => {
   render(<TodaysDeal />)
-  screen.debug(screen.getByText('images'))
 });
