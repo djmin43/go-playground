@@ -30,6 +30,6 @@ const server = setupServer(
 afterEach(() => cleanup())
 
 test('testing a test run', async () => {
-  await render(<TodaysDeal />)
+  render(<TodaysDeal />)
   screen.debug(screen.getByText('images'))
 });
