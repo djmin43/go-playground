@@ -1,7 +1,7 @@
 import { rest } from 'msw';
 
 const handlers = [
-  rest.get('https://picsum.photos/v2/list', (req, res, ctx) => res(
+  rest.get('/https://picsum.photos/v2/list', (req, res, ctx) => res(
     ctx.status(200),
     ctx.json({
       data: [
