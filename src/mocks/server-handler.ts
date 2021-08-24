@@ -1,6 +1,6 @@
 import { rest } from 'msw';
 
-const handlers = [
+export const handlers = [
   rest.get('/https://picsum.photos/v2/list', (req, res, ctx) => res(
     ctx.status(200),
     ctx.json({
@@ -21,4 +21,3 @@ const handlers = [
   )),
 ];
 
-export { handlers }
