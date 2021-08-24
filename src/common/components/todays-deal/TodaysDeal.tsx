@@ -1,6 +1,12 @@
+/** @jsx jsx */
+import { jsx, css } from '@emotion/react'
 import React, { ReactElement, useEffect, useState } from 'react';
-import Image from 'next/image';
 import axios from 'axios';
+
+const imageSize = css({
+  width: '30vw',
+  height: '30vw',
+})
 
 export type RandomImage = {
   id: string;
@@ -26,10 +32,9 @@ const TodaysDeal = (): ReactElement => {
 
   return (
     <div>
-      <h4>images</h4>
       {randomImages.map(({ download_url, id, author }) => (
         <div key={id}>
-          <img src={download_url} alt={author} />
+          <img css={imageSize} src={download_url} alt={author} />
         </div>
       ))}
     </div>

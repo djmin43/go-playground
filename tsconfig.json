@@ -15,5 +15,6 @@
     "jsx": "preserve"
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/_document.js", "src/pages/_document.js"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "types": ["@emotion/core"]
 }
