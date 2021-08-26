@@ -35,6 +35,7 @@ const TodaysDeal = (): ReactElement => {
       {randomImages.map(({ download_url, id, author }) => (
         <div key={id}>
           <img css={imageSize} src={download_url} alt={author} />
+          <span>author: {author}</span>
         </div>
       ))}
     </div>
