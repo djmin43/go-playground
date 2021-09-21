@@ -36,7 +36,6 @@ const TodaysDeal = (): ReactElement => {
         <div key={id}>
           <img css={imageSize} src={download_url} alt={author} />
           <span>author: {author}</span>
-          <p>hello</p>
         </div>
       ))}
     </div>
