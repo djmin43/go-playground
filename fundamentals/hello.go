@@ -3,8 +3,9 @@ package main
 import "fmt"
 
 const (
-	french             = "French"
-	spanish            = "Spanish"
+	french  = "French"
+	spanish = "Spanish"
+
 	englishHelloPrefix = "Hello, "
 	spanishHelloPrefix = "Hola, "
 	frenchHelloPrefix  = "Bonjour, "
