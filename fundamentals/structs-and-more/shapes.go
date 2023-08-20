@@ -33,5 +33,5 @@ type Triangle struct {
 }
 
 func (t Triangle) Area() float64 {
-	return t.Width * t.Height / 2
+	return t.Width * t.Height * 0.5
 }
