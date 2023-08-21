@@ -1,15 +1,26 @@
 package maps
 
-import "testing"
+import (
+	"errors"
+	"testing"
+)
 
 func TestSearch(t *testing.T) {
 
-	dictionary := map[string]string{"test": "this is just a test"}
+	dictionary := Dictionary{"test": "this is just a test"}
 
-	got := Search(dictionary, "test")
-	want := "this is just a test"
+	t.Run("known word", func(t *testing.T) {
+		got, _ := dictionary.Search("test")
+		want := "this is just a test"
 
-	assertStrings(t, got, want)
+		assertStrings(t, got, want)
+	})
+
+	t.Run("unknown word", func(t *testing.T) {
+		_, err := dictionary.Search("unknown")
+
+		assertError(t, err, ErrNotFound)
+	})
 
 }
 
@@ -18,5 +29,13 @@ func assertStrings(t testing.TB, got string, want string) {
 
 	if got != want {
 		t.Errorf("got %q want %q given, %q", got, want, "test")
+	}
+}
+
+func assertError(t testing.TB, got, want error) {
+	t.Helper()
+
+	if !errors.Is(want, got) {
+		t.Errorf("got error %q want %q", got, want)
 	}
 }
