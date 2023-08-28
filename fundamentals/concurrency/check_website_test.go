@@ -7,7 +7,7 @@ import (
 )
 
 func slowStubWebsiteChecker(_ string) bool {
-	time.Sleep(20 * time.Millisecond)
+	time.Sleep(2 * time.Second)
 	return true
 }
 
@@ -42,7 +42,7 @@ func TestCheckWebsites(t *testing.T) {
 		"waat://furhurterwe.geds":    false,
 	}
 
-	got := CheckWebsites(mockWebsiteChecker, websites)
+	got := CheckWebsites(slowStubWebsiteChecker, websites)
 
 	if !reflect.DeepEqual(want, got) {
 		t.Fatalf("wanted %v, got %v", want, got)
