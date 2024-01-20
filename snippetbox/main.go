@@ -25,13 +25,22 @@ func snippetView(w http.ResponseWriter, r *http.Request) {
 
 func snippetCreate(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
-		w.WriteHeader(405)
+		w.Header().Set("Allow", "POST")
+		http.Error(w, "Method Not Allowed", 405)
 		w.Write([]byte("Method Not Allowed"))
 		return
 	}
-
 	w.Write([]byte("Create a new snippet..."))
+}
 
+func test(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "GET" {
+		w.Header().Set("Allow", "GET")
+		http.Error(w, "Method Not Allowed", 405)
+		w.Write([]byte("Method not allowed!!!"))
+		return
+	}
+	w.Write([]byte("this is some test"))
 }
 
 func main() {
@@ -41,6 +50,7 @@ func main() {
 	mux.HandleFunc("/", home)
 	mux.HandleFunc("/snippet/view", snippetView)
 	mux.HandleFunc("/snippet/create", snippetCreate)
+	mux.HandleFunc("/test", test)
 
 	// Use the http.ListenAndServe() function to start a new web server. We pass in
 	// two parameters:  the TCP network address to listen on (in this case ":4000")
