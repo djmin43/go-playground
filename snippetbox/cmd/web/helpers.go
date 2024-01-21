@@ -8,7 +8,7 @@ import (
 
 // #1 stack trace
 // #2 send 500 internal server error
-func (app *application) serveError(w http.ResponseWriter, r *http.Request, err error) {
+func (app *application) serveError(w http.ResponseWriter, err error) {
 	trace := fmt.Sprintf("%s\n%s", err.Error(), debug.Stack())
 	app.errorLog.Println(trace)
 
