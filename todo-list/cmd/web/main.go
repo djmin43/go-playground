@@ -1,27 +1,40 @@
 package main
 
 import (
-	"fmt"
+	"flag"
+	"log"
 	"net/http"
+	"os"
 )
+
+type application struct {
+	errorLog *log.Logger
+	infoLog  *log.Logger
+}
 
 func main() {
 
+	addr := flag.String("addr", ":4000", "HTTP network address")
+	flag.Parse()
+
+	infoLog := log.New(os.Stdout, "INFO\t", log.Ldate|log.Ltime)
+	errorLog := log.New(os.Stdout, "ERROR\t", log.Ldate|log.Ltime|log.Lshortfile)
+
+	app := &application{
+		errorLog: errorLog,
+		infoLog:  infoLog,
+	}
+
+	srv := &http.Server{
+		Addr:     *addr,
+		ErrorLog: errorLog,
+		Handler:  app.routes(),
+	}
+
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/", home)
+	mux.HandleFunc("/", app.home)
 
 	http.ListenAndServe(":4000", mux)
 
-}
-
-func home(w http.ResponseWriter, r *http.Request) {
-
-	if r.Method != http.MethodGet {
-		w.Header().Set("Allow", http.MethodGet)
-		http.Error(w, "Get Method Required", http.StatusMethodNotAllowed)
-		return
-	}
-
-	fmt.Fprint(w, "hello world")
 }
