@@ -31,10 +31,8 @@ func main() {
 		Handler:  app.routes(),
 	}
 
-	mux := http.NewServeMux()
-
-	mux.HandleFunc("/", app.home)
-
-	http.ListenAndServe(":4000", mux)
+	infoLog.Printf("Starting server on %s", *addr)
+	err := srv.ListenAndServe()
+	errorLog.Fatal(err)
 
 }
