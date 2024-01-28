@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
 
@@ -21,6 +24,15 @@ func main() {
 	fmt.Printf("my name is %q and my name is %q\n", age, name)
 	fmt.Printf("age is of type %T\n", age)
 	fmt.Printf("you scored %0.1f points\n", 225.55)
+
+	file, err := os.Create("output.txt")
+	if err != nil {
+		fmt.Println("error")
+		return
+	}
+	defer file.Close()
+
+	fmt.Fprint(file, "testing Fprintf")
 
 	// Sprintf (save formatted strings)
 	var str = fmt.Sprintf("my name is %v and my name is %v \n", age, name)
