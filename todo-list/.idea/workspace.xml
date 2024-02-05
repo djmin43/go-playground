@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0af2dbda-a749-4d1e-9d2a-9a18f2d579ac" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ui/html/pages/home.tmpl.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/html/base.tmpl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/html/pages/home.tmpl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmd/web/handlers.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/web/handlers.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/html/base.tmpl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/html/pages/home.tmpl.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +52,7 @@
     "git-widget-placeholder": "master",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/Users/dongjoonmin",
+    "last_opened_file_path": "/Users/dongjoonmin/Developer/go-plagyround/todo-list/ui/html/pages",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
@@ -59,7 +60,11 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ui/html/pages" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ui/html" />
       <recent name="$PROJECT_DIR$/ui/html/pages" />
     </key>
   </component>
