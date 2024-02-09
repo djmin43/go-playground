@@ -8,6 +8,13 @@ import (
 
 func home(w http.ResponseWriter, r *http.Request) {
 
+	switch r.Method {
+	case http.MethodGet:
+		return
+	case http.MethodPost:
+		return
+	}
+
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
 		return
