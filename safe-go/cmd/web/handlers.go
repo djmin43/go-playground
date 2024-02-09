@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"html/template"
 	"log"
 	"net/http"
@@ -21,8 +22,17 @@ func apiHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func getApi(w http.ResponseWriter, r *http.Request) {
+type Message struct {
+	Message string `json:"message"`
+}
 
+func getApi(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	err := json.NewEncoder(w).Encode(&Message{"hello"})
+	if err != nil {
+		http.Error(w, "internal server error", http.StatusInternalServerError)
+		return
+	}
 }
 
 func postApi(w http.ResponseWriter, r *http.Request) {
