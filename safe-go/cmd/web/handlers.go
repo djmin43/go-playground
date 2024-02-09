@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -36,6 +37,12 @@ func getApi(w http.ResponseWriter, r *http.Request) {
 }
 
 func postApi(w http.ResponseWriter, r *http.Request) {
+
+	var m Message
+
+	json.NewDecoder(r.Body).Decode(&m)
+
+	fmt.Printf("%d", m.Message)
 
 }
 
