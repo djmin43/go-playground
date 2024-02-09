@@ -6,20 +6,45 @@ import (
 	"net/http"
 )
 
-func home(w http.ResponseWriter, r *http.Request) {
+func apiHandler(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path != "/api" {
+		http.NotFound(w, r)
+		return
+	}
 
 	switch r.Method {
 	case http.MethodGet:
-		return
+		getApi(w, r)
 	case http.MethodPost:
-		return
+		postApi(w, r)
 	}
+
+}
+
+func getApi(w http.ResponseWriter, r *http.Request) {
+
+}
+
+func postApi(w http.ResponseWriter, r *http.Request) {
+
+}
+
+func homeHandler(w http.ResponseWriter, r *http.Request) {
 
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
 		return
 	}
 
+	if r.Method != http.MethodGet {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	getHome(w, r)
+}
+
+func getHome(w http.ResponseWriter, r *http.Request) {
 	files := []string{
 		"./ui/pages/index.html",
 	}
