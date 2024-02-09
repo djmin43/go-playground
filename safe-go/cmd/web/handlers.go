@@ -1,6 +1,10 @@
 package main
 
-import "net/http"
+import (
+	"html/template"
+	"log"
+	"net/http"
+)
 
 func home(w http.ResponseWriter, r *http.Request) {
 
@@ -9,6 +13,17 @@ func home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Write([]byte("hello"))
+	ts, err := template.ParseFiles("./ui/pages/index.html")
+	if err != nil {
+		log.Println(err.Error())
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
 
+	err = ts.Execute(w, nil)
+
+	if err != nil {
+		log.Println(err.Error())
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+	}
 }
