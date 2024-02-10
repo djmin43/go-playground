@@ -39,10 +39,19 @@ func getApi(w http.ResponseWriter, r *http.Request) {
 func postApi(w http.ResponseWriter, r *http.Request) {
 
 	var m Message
+	if err := json.NewDecoder(r.Body).Decode(&m); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
 
-	json.NewDecoder(r.Body).Decode(&m)
+	prettyJSON, err := json.MarshalIndent(m, "", "  ")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
-	fmt.Printf("%d", m.Message)
+	fmt.Fprintf(w, "%s\n", string(prettyJSON))
+	fmt.Printf("%s\n", string(prettyJSON))
 
 }
 
