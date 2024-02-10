@@ -58,7 +58,6 @@ func postApi(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("else")
 	fmt.Fprintf(w, "%s\n", string(prettyJSON))
 	fmt.Printf("%s\n", string(prettyJSON))
-
 }
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
@@ -93,4 +92,61 @@ func getHome(w http.ResponseWriter, r *http.Request) {
 		log.Println(err.Error())
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 	}
+}
+
+func getLoginUser(w http.ResponseWriter, r *http.Request) {
+	files := []string{
+		"./ui/pages/login_user.html",
+	}
+
+	ts, err := template.ParseFiles(files...)
+	if err != nil {
+		log.Println(err.Error())
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	err = ts.Execute(w, nil)
+	if err != nil {
+		log.Println(err.Error())
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+	}
+
+}
+
+func getAttackerExample(w http.ResponseWriter, r *http.Request) {
+	files := []string{
+		"./ui/pages/attacker_example.html",
+	}
+
+	ts, err := template.ParseFiles(files...)
+	if err != nil {
+		log.Println(err.Error())
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+
+	err = ts.Execute(w, nil)
+	if err != nil {
+		log.Println(err.Error())
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+	}
+
+}
+
+func postLog(w http.ResponseWriter, r *http.Request) {
+
+	var m Message
+	if err := json.NewDecoder(r.Body).Decode(&m); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	prettyJSON, err := json.MarshalIndent(m, "", "  ")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	fmt.Printf("%s\n", string(prettyJSON))
 }
