@@ -6,6 +6,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"strconv"
+	"time"
 )
 
 func apiHandler(w http.ResponseWriter, r *http.Request) {
@@ -50,6 +52,10 @@ func postApi(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	w.Header().Set("X-Timestamp", strconv.Itoa(int(time.Now().Unix())))
+	lang := r.Header.Get("x-lang")
+	fmt.Printf("%s", lang)
+	fmt.Println("else")
 	fmt.Fprintf(w, "%s\n", string(prettyJSON))
 	fmt.Printf("%s\n", string(prettyJSON))
 
