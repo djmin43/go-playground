@@ -7,6 +7,7 @@ import (
 	"os"
 )
 
+// go는 struct의 method와 property가 분리되어 있으므로 주의할 것!!
 type application struct {
 	errorLog *log.Logger
 	infoLog  *log.Logger
