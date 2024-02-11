@@ -8,15 +8,13 @@ import (
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
 
 	if r.URL.Path != "/" {
-		http.NotFound(w, r)
-		app.errorLog.Printf("user came with wrong path: %s", r.URL.Path)
+		app.notFound(w)
 		return
 	}
 
 	if r.Method != http.MethodGet {
 		w.Header().Set("Allow", http.MethodGet)
-		http.Error(w, "Get Method Required", http.StatusMethodNotAllowed)
-		app.errorLog.Printf("user with wrong method: %s", r.Method)
+		app.methodNotAllowed(w)
 		return
 	}
 
@@ -28,13 +26,11 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	ts, err := template.ParseFiles(files...)
 
 	if err != nil {
-		app.errorLog.Println(err.Error())
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		app.serverError(w, err)
 	}
 
 	err = ts.ExecuteTemplate(w, "base", nil)
 	if err != nil {
-		app.errorLog.Println(err.Error())
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		app.serverError(w, err)
 	}
 }
