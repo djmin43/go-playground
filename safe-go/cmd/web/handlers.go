@@ -31,6 +31,8 @@ type Message struct {
 
 func getApi(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:4000")
+	fmt.Printf(w.Header().Get("Access-Control-Allow-Origin"))
 	err := json.NewEncoder(w).Encode(&Message{"hello"})
 	if err != nil {
 		http.Error(w, "internal server error", http.StatusInternalServerError)
