@@ -17,8 +17,8 @@ type application struct {
 
 func main() {
 
-	addr := flag.String("addr", ":4001", "HTTP network address")
-	dsn := flag.String("dsn", "web:pass@snippetbox?parseTime=true", "MySQL data source name")
+	addr := flag.String("addr", ":4000", "HTTP network address")
+	dsn := flag.String("dsn", "web:pass@/snippetbox?parseTime=true", "MySQL data source name")
 
 	flag.Parse()
 
@@ -50,6 +50,7 @@ func main() {
 
 func openDB(dsn string) (*sql.DB, error) {
 	// this returns a connection pool
+	// it's just a pool of many connections
 	db, err := sql.Open("mysql", dsn)
 	if err != nil {
 		return nil, err
