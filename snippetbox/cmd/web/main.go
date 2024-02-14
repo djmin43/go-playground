@@ -34,10 +34,12 @@ func main() {
 
 	defer db.Close()
 
+	snippetModel := &models.SnippetModel{DB: db}
+
 	app := &application{
 		errorLog: errorLog,
 		infoLog:  infoLog,
-		snippets: &models.SnippetModel{DB: db},
+		snippets: snippetModel,
 	}
 
 	srv := &http.Server{
