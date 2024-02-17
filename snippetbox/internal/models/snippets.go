@@ -26,14 +26,14 @@ func (m *SnippetModel) Insert(title string, content string, expires int) (int, e
 		return 0, err
 	}
 
+	// this returns last inserted id
 	id, err := result.LastInsertId()
 	if err != nil {
 		return 0, err
 	}
 
+	// id returned is int64, thus convert it into int
 	return int(id), nil
-
-	return 0, nil
 }
 
 func (m *SnippetModel) Get(id int) (*Snippet, error) {
