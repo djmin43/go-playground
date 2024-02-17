@@ -27,6 +27,7 @@ func (m *SnippetModel) Insert(title string, content string, expires int) (int, e
 	}
 
 	// this returns last inserted id
+	// Postgres doesn't support LastInsertId, thus have to write 'returning'
 	id, err := result.LastInsertId()
 	if err != nil {
 		return 0, err
