@@ -34,6 +34,7 @@ func main() {
 
 	defer db.Close()
 
+	// add connection pool
 	snippetModel := &models.SnippetModel{DB: db}
 
 	app := &application{
