@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"flag"
 	"github.com/djmin43/snippetbox/internal/models"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
@@ -12,9 +13,10 @@ import (
 )
 
 type application struct {
-	errorLog *log.Logger
-	infoLog  *log.Logger
-	snippets *models.SnippetModel
+	errorLog      *log.Logger
+	infoLog       *log.Logger
+	snippets      *models.SnippetModel
+	templateCache map[string]*template.Template
 }
 
 func main() {
@@ -34,13 +36,16 @@ func main() {
 
 	defer db.Close()
 
+	templateCache, err := newTemplateCache()
+
 	// add connection pool
 	snippetModel := &models.SnippetModel{DB: db}
 
 	app := &application{
-		errorLog: errorLog,
-		infoLog:  infoLog,
-		snippets: snippetModel,
+		errorLog:      errorLog,
+		infoLog:       infoLog,
+		snippets:      snippetModel,
+		templateCache: templateCache,
 	}
 
 	srv := &http.Server{
