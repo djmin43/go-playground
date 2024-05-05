@@ -2,31 +2,38 @@
 package main
 
 import (
+	"errors"
 	"fmt"
-	"unicode/utf8"
 )
 
 func main() {
-	var intNum int = 32767
-	fmt.Println(intNum)
+	var printValue string = "hello world"
+	printMe(printValue)
 
-	var myString string = "Hello world"
-	fmt.Println(myString)
+	var numerator int = 11
+	var denominator int = 2
+	var result, remainder, err = intDivision(numerator, denominator)
+	if err != nil {
+		fmt.Printf(err.Error())
+	} else if remainder == 0 {
+		fmt.Printf("The result of the integer division is %v", result)
+	} else {
+		fmt.Printf("The result of the integer division is %v with remainder %v", result, remainder)
+	}
 
-	// this is length of byte. go uses UTF-8.
-	fmt.Println(len("test"))
+}
 
-	// rune is data type representing a character
-	fmt.Println(utf8.RuneCountInString("f"))
+func printMe(printValue string) {
+	fmt.Println(printValue)
+}
 
-	var myRune rune = 'a'
-	fmt.Println(myRune)
-
-	var myBoolean bool = true
-
-	fmt.Println(myBoolean)
-
-	// can't change. no initial value
-	const myCont string = "const value"
-
+func intDivision(numerator int, denominator int) (int, int, error) {
+	var err error
+	if denominator == 0 {
+		err = errors.New("cannot Divide by Zero")
+		return 0, 0, err
+	}
+	var result int = numerator / denominator
+	var remainder int = numerator % denominator
+	return result, remainder, err
 }
