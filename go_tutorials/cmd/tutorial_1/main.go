@@ -19,4 +19,30 @@ func main() {
 	intSlice3 = append(intSlice3, 6)
 	fmt.Println(intSlice3)
 
+	var someMap map[string]uint8 = map[string]uint8{"Adam": 23, "Sarah": 45}
+	fmt.Println(someMap["Adam"])
+	fmt.Println(someMap["Json"])
+
+	// map does not guarantee the order
+	for name := range someMap {
+		fmt.Printf("Name: %v\n", name)
+	}
+
+	for index, value := range intSlice3 {
+		fmt.Printf("someNumber: %v, %v\n", index, value)
+	}
+
+	for i := 0; i < 10; i++ {
+		fmt.Println(i)
+	}
+
+	var i int32 = 0
+	for {
+		if i >= 10 {
+			break
+		}
+		fmt.Println(i)
+		i++
+	}
+	fmt.Println("hello")
 }
