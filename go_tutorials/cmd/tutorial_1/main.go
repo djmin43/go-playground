@@ -1,39 +1,28 @@
 // look for the entry function here. 'main'
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"sync"
+	"time"
+)
+
+var wg = sync.WaitGroup{}
+var dbData = []string{"id1", "id2", "id3", "id4", "id5"}
 
 func main() {
-	// store the pointer
-	// * this star is just a pointer type. new(int32) intiailazes the p value to a pointer.
-	var p *int32 = new(int32)
+	t0 := time.Now()
+	for i := 0; i < len(dbData); i++ {
+		go dbCall(i)
+	}
 
-	// this is value
-	var i int32
-
-	// ampersand is the reference to the memory address of the variable
-	p = &i
-	*p = 1
-
-	// This star sign has a different duty. this sends the value of the pointer value.
-	fmt.Printf("The value p points to is: %v", *p)
-	fmt.Printf("\nThe value if i is: %v", i)
-
-	var slice = []int{1, 2, 3}
-	var sliceCopy = slice
-	sliceCopy[2] = 4
-	fmt.Printf("\nThe value slice points to is: %v", slice)
-	fmt.Printf("\nThe value slice points to is: %v", sliceCopy)
-
-	var thing1 = [5]float64{1, 2, 3, 4, 5}
-	var result [5]float64 = square(&thing1)
-	fmt.Printf("\nThe result is: %v", result)
+	fmt.Printf("\nTotal execution time: %v", time.Since(t0))
 }
 
-func square(thing2 *[5]float64) [5]float64 {
-	for i := range thing2 {
-		thing2[i] = thing2[i] * thing2[i]
-	}
-	return *thing2
-
+func dbCall(i int) {
+	//	Simulate DB call delay
+	var delay float32 = rand.Float32() * 2000
+	time.Sleep(time.Duration(delay) * time.Millisecond)
+	fmt.Println("The result from the database is: ", dbData[i])
 }
