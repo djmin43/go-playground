@@ -1,39 +1,22 @@
 // look for the entry function here. 'main'
 package main
 
-import (
-	"errors"
-	"fmt"
-)
+import "fmt"
 
 func main() {
-	var printValue string = "hello world"
-	printMe(printValue)
+	//var intArr [3]int32 = [...]int32{1, 2, 3}
+	intArr1 := [3]int32{1, 2, 3}
+	fmt.Println(&intArr1[1])
 
-	var numerator int = 11
-	var denominator int = 2
-	var result, remainder, err = intDivision(numerator, denominator)
-	if err != nil {
-		fmt.Printf(err.Error())
-	} else if remainder == 0 {
-		fmt.Printf("The result of the integer division is %v", result)
-	} else {
-		fmt.Printf("The result of the integer division is %v with remainder %v", result, remainder)
-	}
+	// Slices wrap arrays to give a more general, powerful, and convenient interface to sequences of data.
 
-}
+	var someSlice = []int32{3, 4, 5, 6}
+	fmt.Printf("capacity of someSlice is %v", cap(someSlice))
+	someSlice = append(someSlice, 7)
+	fmt.Printf("capacity of someSlice is %v", cap(someSlice))
 
-func printMe(printValue string) {
-	fmt.Println(printValue)
-}
+	var intSlice3 []int32 = make([]int32, 3)
+	intSlice3 = append(intSlice3, 6)
+	fmt.Println(intSlice3)
 
-func intDivision(numerator int, denominator int) (int, int, error) {
-	var err error
-	if denominator == 0 {
-		err = errors.New("cannot Divide by Zero")
-		return 0, 0, err
-	}
-	var result int = numerator / denominator
-	var remainder int = numerator % denominator
-	return result, remainder, err
 }
