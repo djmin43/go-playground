@@ -1,8 +1,28 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
 
 func main() {
-	s := "김포"
-	fmt.Printf("%8T %[1]v\n", s)
+	if len(os.Args) < 3 {
+		fmt.Fprintln(os.Stderr, "not enough args")
+		os.Exit(-1)
+	}
+
+	old, ne := os.Args[1], os.Args[2]
+
+	scan := bufio.NewScanner(os.Stdin)
+
+	for scan.Scan() {
+		s := strings.Split(scan.Text(), old)
+
+		fmt.Printf("%v", len(s))
+		t := strings.Join(s, ne)
+
+		fmt.Println(t)
+	}
 }
