@@ -13,8 +13,10 @@ type templateData struct {
 
 func newTemplateCache() (map[string]*template.Template, error) {
 
+	// Initialize a new map to act as the cache.
 	cache := map[string]*template.Template{}
 
+	// Use the filepath.Glob() function to get a slice of all filepaths that match the pattern.
 	pages, err := filepath.Glob("./ui/html/pages/*.tmpl")
 
 	if err != nil {
