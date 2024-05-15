@@ -20,6 +20,39 @@ func main() {
 
 }
 
+func dbGetAllArticles() ([]*Article, error) {
+	query, err := db.Prepare("select * from articles")
+	defer query.Close()
+
+	if err != nil {
+		return nil, err
+	}
+
+	result, err := query.Query()
+
+	if err != nil {
+		return nil, err
+	}
+	articles := make([]*Article, 0)
+	for result.Next() {
+		data := new(Article)
+		err := result.Scan(
+			&data.ID,
+			&data.Title,
+			&data.Content,
+		)
+		if err != nil {
+			return nil, err
+		}
+		if err != nil {
+			return nil, err
+		}
+		articles = append(articles, data)
+
+		return articles, nil
+	}
+}
+
 func dbCreateArticle(article *Article) error {
 	query, err := db.Prepare("insert into articles(title, content) values (?, ?)")
 	defer query.Close()
