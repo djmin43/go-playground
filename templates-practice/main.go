@@ -1,27 +1,28 @@
 package main
 
 import (
-	"html/template"
-	"os"
+	"database/sql"
+	"encoding/json"
+	"fmt"
+	"github.com/go-chi/chi/v5"
+	_ "github.com/mattn/go-sqlite3"
 )
 
-type User struct {
-	Name string
+type Article struct {
+	ID      int    `json:"id333"`
+	Title   string `json:"title333"`
+	Content string `json:"content333"`
 }
 
+var router *chi.Mux
+var db *sql.DB
+
 func main() {
-	tmpl := "Hello {{.Name}}!"
-	user := User{Name: "James"}
-	t, err := template.New("test").Parse(tmpl)
-
+	article := Article{1, "title1", "content1"}
+	jsonData, err := json.Marshal(article)
 	if err != nil {
 		panic(err)
 	}
-
-	err = t.Execute(os.Stdout, user)
-
-	if err != nil {
-		panic(err)
-	}
+	fmt.Println(string(jsonData))
 
 }
