@@ -4,8 +4,9 @@ import "fmt"
 
 func main() {
 
-	var b uint = 1
+	n, err := fmt.Println("Hello, playground")
 
-	fmt.Printf("%d", b)
-
+	if _, err := fmt.Println(n); err != nil {
+		fmt.Println(err)
+	}
 }
