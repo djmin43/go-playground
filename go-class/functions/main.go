@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func do(m1 *map[int]int) {
 	(*m1)[3] = 0
@@ -11,12 +13,5 @@ func do(m1 *map[int]int) {
 }
 
 func main() {
-	m := map[int]int{4: 1, 7: 2, 8: 3}
-
-	fmt.Println("m", m)
-
-	do(&m)
-
-	fmt.Println("m", m)
 
 }
