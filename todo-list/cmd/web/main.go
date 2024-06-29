@@ -13,6 +13,10 @@ func main() {
 	mux.HandleFunc("/view", todoView)
 	mux.HandleFunc("/create", todoCreate)
 
+	fileServer := http.FileServer(http.Dir("./ui/static/"))
+
+	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
+
 	err := http.ListenAndServe(":3000", mux)
 
 	log.Println("Server running on :3000")
