@@ -28,9 +28,9 @@ func main() {
 
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/", home)
-	mux.HandleFunc("/view", todoView)
-	mux.HandleFunc("/create", todoCreate)
+	mux.HandleFunc("/", app.home)
+	mux.HandleFunc("/view", app.todoView)
+	mux.HandleFunc("/create", app.todoCreate)
 
 	fileServer := http.FileServer(http.Dir("./ui/static/"))
 
