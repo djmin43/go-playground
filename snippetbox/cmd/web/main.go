@@ -1,11 +1,16 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"net/http"
 )
 
 func main() {
+
+	addr := flag.String("addr", ":4000", "HTTP network address")
+
+	flag.Parse()
 
 	mux := http.NewServeMux()
 
@@ -22,7 +27,8 @@ func main() {
 	// ./ui/static/some-file.css가 된다.
 	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
 
-	log.Println("Listening on 4000")
-	err := http.ListenAndServe(":4000", mux)
+	log.Printf("Listening on %s", *addr)
+
+	err := http.ListenAndServe(*addr, mux)
 	log.Fatal(err)
 }
