@@ -26,19 +26,9 @@ func main() {
 		errorLog: errorLog,
 	}
 
-	mux := http.NewServeMux()
-
-	mux.HandleFunc("/", app.home)
-	mux.HandleFunc("/view", app.todoView)
-	mux.HandleFunc("/create", app.todoCreate)
-
-	fileServer := http.FileServer(http.Dir("./ui/static/"))
-
-	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
-
 	srv := &http.Server{
 		Addr:     *addr,
-		Handler:  mux,
+		Handler:  app.routes(),
 		ErrorLog: errorLog,
 	}
 
