@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 	"strconv"
@@ -69,5 +70,14 @@ func (app *application) todoCreate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Write([]byte("create todo item"))
+	title := "first todo"
+	content := "do something cool"
+	interval := 7
+
+	id, err := app.todos.Insert(title, content, interval)
+	if err != nil {
+		app.serverError(w, err)
+	}
+
+	http.Redirect(w, r, fmt.Sprintf("/view?id=%d", id), http.StatusSeeOther)
 }
