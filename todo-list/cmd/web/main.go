@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"flag"
+	"github.com/djmin43/todo-list/internal/models"
 	_ "github.com/go-sql-driver/mysql"
 	"log"
 	"net/http"
@@ -12,6 +13,7 @@ import (
 type application struct {
 	infoLog  *log.Logger
 	errorLog *log.Logger
+	todos    *models.TodoModel
 }
 
 func main() {
@@ -36,6 +38,9 @@ func main() {
 	app := &application{
 		infoLog:  infoLog,
 		errorLog: errorLog,
+		todos: &models.TodoModel{
+			DB: db,
+		},
 	}
 
 	srv := &http.Server{
