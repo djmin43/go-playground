@@ -1,7 +1,9 @@
 package main
 
 import (
+	"errors"
 	"fmt"
+	"github.com/djmin43/todo-list/internal/models"
 	"html/template"
 	"net/http"
 	"strconv"
@@ -43,24 +45,18 @@ func (app *application) todoView(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	files := []string{
-		"./ui/html/pages/base.tmpl",
-		"./ui/html/pages/home.tmpl",
-	}
+	todo, err := app.todos.Get(id)
 
-	ts, err := template.ParseFiles(files...)
 	if err != nil {
-		app.serverError(w, err)
+		if errors.Is(err, models.ErrNoRecord) {
+			app.notFoundError(w)
+		} else {
+			app.serverError(w, err)
+		}
 		return
 	}
 
-	err = ts.ExecuteTemplate(w, "base", nil)
-
-	if err != nil {
-		app.serverError(w, err)
-		return
-	}
-
+	fmt.Fprintf(w, "%+v", todo)
 }
 
 func (app *application) todoCreate(w http.ResponseWriter, r *http.Request) {

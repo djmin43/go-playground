@@ -2,6 +2,7 @@ package models
 
 import (
 	"database/sql"
+	"errors"
 	"time"
 )
 
@@ -36,7 +37,25 @@ func (m *TodoModel) Insert(title, content string, expires int) (int, error) {
 }
 
 func (m *TodoModel) Get(id int) (*Todo, error) {
-	return nil, nil
+
+	stmt := `SELECT title, content, created FROM todos WHERE id = ? AND expires > UTC_TIMESTAMP()`
+
+	row := m.DB.QueryRow(stmt, id)
+
+	t := &Todo{}
+
+	err := row.Scan(&t.Title, &t.Content, &t.Created)
+
+	if err != nil {
+
+		if errors.Is(err, sql.ErrNoRows) {
+			return nil, ErrNoRecord
+		} else {
+			return nil, err
+		}
+	}
+
+	return t, nil
 }
 
 func (m *TodoModel) Latest() ([]*Todo, error) {

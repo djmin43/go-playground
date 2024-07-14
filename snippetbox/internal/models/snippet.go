@@ -44,10 +44,12 @@ func (m *SnippetModel) Get(id int) (*Snippet, error) {
 	s := &Snippet{}
 	err := row.Scan(&s.Title, &s.Content, &s.Created)
 
-	if errors.Is(err, sql.ErrNoRows) {
-		return nil, sql.ErrNoRows
-	} else {
-		return nil, err
+	if err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			return nil, ErrNoRecord
+		} else {
+			return nil, err
+		}
 	}
 
 	return s, nil
