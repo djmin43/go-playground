@@ -1,30 +1,26 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
-	"time"
 )
 
-type Employee struct {
-	Name   string
-	Number int
-	Boss   *Employee
-	Hired  time.Time
+type Response struct {
+	Page  int      `json:"page"`
+	Words []string `json:"words,omitempty"`
 }
 
 func main() {
+	r := &Response{Page: 1, Words: []string{"up", "in", "out"}}
 
-	c := map[string]*Employee{}
+	j, _ := json.Marshal(r)
 
-	c["Lamine"] = &Employee{"Lamine", 2, nil, time.Now()}
+	fmt.Printf(string(j))
+	fmt.Printf("%#v\n", r)
 
-	c["Matt"] = &Employee{
-		Name:   "Matt",
-		Number: 1,
-		Hired:  time.Now(),
-		Boss:   c["Lamine"],
-	}
+	var r2 Response
 
-	fmt.Printf("%T %+[1]v\n", c["Lamine"])
-	fmt.Printf("%T %+[1]v\n", c["Matt"])
+	_ = json.Unmarshal(j, &r2)
+	fmt.Printf("%#v\n", r2)
+
 }
